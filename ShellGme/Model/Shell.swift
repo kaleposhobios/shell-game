@@ -35,4 +35,16 @@ import UIKit
         bounds = CGRectMake(CGFloat(startPosition.x()), CGFloat(startPosition.y()), CGFloat(Constants.shellWidth), CGFloat(Constants.shellHeight))
     }
 
+    func touched() {
+        if hideButton {
+            var key: String?
+            if hasButton {
+                key = Constants.ShellWithButtonTappedKey
+            } else {
+                key = Constants.ShellWithoutButtonTappedKey
+            }
+            NSNotificationCenter.defaultCenter().postNotificationName(key!, object: nil)
+        }
+    }
+
 }

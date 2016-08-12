@@ -11,7 +11,7 @@ import UIKit
 /**
  * Gives motion to the shells
  */
-struct UIDynamicsMotionController : MotionController {
+class UIDynamicsMotionController : MotionController {
 
     let shells: [Shell]
     var animator: UIDynamicAnimator
@@ -40,8 +40,17 @@ struct UIDynamicsMotionController : MotionController {
 
         let behavior = UIDynamicItemBehavior(items: shells)
         behavior.elasticity = 1
-        behavior.density = 1
+        behavior.density = 0.5
         animator.addBehavior(behavior)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userTappedButton), name: Constants.ShellWithButtonTappedKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userTappedButton), name: Constants.ShellWithoutButtonTappedKey, object: nil)
+
+        // Setop after
+    }
+
+    @objc func userTappedButton() {
+        // Stop all motion
+        animator.removeAllBehaviors()
     }
 
     func startMotion() {
@@ -53,8 +62,7 @@ struct UIDynamicsMotionController : MotionController {
             range = (0, 100)
             let magnitude = CGFloat(arc4random_uniform(UInt32(range.1 - range.0) + 1) + UInt32(range.0))
             let push = UIPushBehavior(items: [shell], mode: .Instantaneous)
-            push.setAngle(angle, magnitude: magnitude / 50)
-            print("pushing with angle: \(angle) and magnitude \(magnitude)")
+            push.setAngle(angle, magnitude: magnitude / 10)
             animator.addBehavior(push)
         }
 

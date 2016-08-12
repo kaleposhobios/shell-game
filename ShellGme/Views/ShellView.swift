@@ -28,11 +28,7 @@ class ShellView : UIView {
     }
 
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if shell.hasButton {
-            UIAlertView(title: "YOU FOUND ME", message: nil, delegate: nil, cancelButtonTitle: "OK").show()
-        } else {
-            UIAlertView(title: "FAIL WHALE", message: nil, delegate: nil, cancelButtonTitle: "OK").show()
-        }
+        shell.touched()
     }
 
     override func drawRect(rect: CGRect) {

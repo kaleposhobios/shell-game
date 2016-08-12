@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameplayViewController: UIViewController {
+class GameplayViewController: UIViewController, UIAlertViewDelegate {
 
     var gameBoard: GameBoardView?
     let game: Game
@@ -38,5 +38,20 @@ class GameplayViewController: UIViewController {
         // Give a motion controller to control the shells movement
         game.motionController = UIDynamicsMotionController(referenceView: gameBoard!, shells: game.shells)
         game.startGame()
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userFoundButton), name: Constants.ShellWithButtonTappedKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userFailedButton), name: Constants.ShellWithoutButtonTappedKey, object: nil)
+    }
+
+    func userFoundButton() {
+        UIAlertView(title: "YOU FOUND ME", message: nil, delegate: self, cancelButtonTitle: "OK").show()
+    }
+
+    func userFailedButton() {
+        UIAlertView(title: "FAIL WHALE", message: nil, delegate: self, cancelButtonTitle: "OK").show()
+    }
+
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        navigationController?.popViewControllerAnimated(true)
     }
 }
