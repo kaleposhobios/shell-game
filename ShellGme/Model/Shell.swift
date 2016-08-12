@@ -18,6 +18,7 @@ import UIKit
     var transform: CGAffineTransform
 
     var hasButton: Bool = false
+    var hideButton: Bool = false
 
     init(hasButton button: Bool) {
         // Set up defaults

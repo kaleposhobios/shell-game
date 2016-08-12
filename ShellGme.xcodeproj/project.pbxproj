@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B362FFC1D5E520E00516DE2 /* ShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B362FFB1D5E520E00516DE2 /* ShellView.swift */; };
 		5B90EFC61D5D0A750095C63E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EFC51D5D0A750095C63E /* AppDelegate.swift */; };
 		5B90EFCB1D5D0A750095C63E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B90EFC91D5D0A750095C63E /* Main.storyboard */; };
 		5B90EFCD1D5D0A750095C63E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B90EFCC1D5D0A750095C63E /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B362FFB1D5E520E00516DE2 /* ShellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShellView.swift; path = Views/ShellView.swift; sourceTree = "<group>"; };
 		5B90EFC21D5D0A750095C63E /* ShellGme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShellGme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B90EFC51D5D0A750095C63E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B90EFCA1D5D0A750095C63E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				5B90EFD81D5D140E0095C63E /* MenuView.swift */,
 				5B90EFDC1D5D24AA0095C63E /* GameBoardView.swift */,
+				5B362FFB1D5E520E00516DE2 /* ShellView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				5B90EFE21D5D28350095C63E /* Constants.swift in Sources */,
 				5B90EFE01D5D27C50095C63E /* Heartbeater.swift in Sources */,
 				5B90EFF11D5E0AE80095C63E /* Game.swift in Sources */,
+				5B362FFC1D5E520E00516DE2 /* ShellView.swift in Sources */,
 				5B90EFF51D5E0B050095C63E /* GameplayViewController.swift in Sources */,
 				5B90EFF61D5E0B050095C63E /* MenuViewController.swift in Sources */,
 				5B90EFF81D5E107E0095C63E /* MotionController.swift in Sources */,

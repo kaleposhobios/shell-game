@@ -33,7 +33,7 @@ class Game {
             if let motionController = self.motionController {
                 motionController.startMotion()
             }
-            self.showingButton = false
+            self.shells.forEach { $0.hideButton = true }
         }
     }
 

@@ -13,16 +13,23 @@ import UIKit
  */
 class GameBoardView: UIView {
     let game: Game
+    var shellViews = [ShellView]()
 
     init(frame: CGRect, game aGame: Game) {
         // Store the game it can be rendered
         game = aGame
         super.init(frame: frame)
 
+        // Set up shell views to render the shell objects
+        game.shells.forEach {
+            let shell = ShellView(shell: $0)
+            addSubview(shell)
+            shellViews.append(shell)
+        }
+        // White background
         backgroundColor = .whiteColor()
 
-        // Add a display link which ties the update method to setNeedsDisplay(),
-        // so the view renders along with scren refresh rate
+        // Add a display link so the view updates along with scren refresh rate
         let displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
     }
@@ -35,29 +42,16 @@ class GameBoardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func drawRect(rect: CGRect) {
-        // Get context for drawing
-        let context = UIGraphicsGetCurrentContext()
-        for shell in game.shells {
-            let rect = CGRect(
-                x: shell.center.x - floor(shell.bounds.size.width / 2),
-                y: shell.center.y - floor(shell.bounds.size.height / 2),
-                width: shell.bounds.width,
-                height: shell.bounds.height
-            )
-            // Draw the shell as a blue rectangle
-            UIColor.blueColor().set()
-            CGContextFillRect(context, rect)
-            // If the shell is selected, draw a green cicle inside of it
-            if shell.hasButton && game.showingButton {
-                UIColor.greenColor().set()
-                CGContextFillEllipseInRect(context, rect)
-            }
-        }
-    }
-
     func update() {
-        // CADisplayLink timer, trigger render
-        setNeedsDisplay()
+        for index in 0...game.shells.count - 1 {
+            // Update the location of the shell view to match the shell's known location
+            let shell = game.shells[index]
+            let shellFrame = CGRectMake((shell.center.x - shell.bounds.width / 2), (shell.center.y - shell.bounds.height / 2), shell.bounds.width, shell.bounds.height)
+            let view = shellViews[index]
+            view.frame = shellFrame
+            // And ask it to re-render
+            view.setNeedsDisplay()
+        }
+
     }
 }
