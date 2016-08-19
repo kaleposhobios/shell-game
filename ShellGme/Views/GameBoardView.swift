@@ -26,8 +26,7 @@ class GameBoardView: UIView {
             addSubview(shell)
             shellViews.append(shell)
         }
-        // White background
-        backgroundColor = .whiteColor()
+        backgroundColor = UIColor(hex: 0xC5CAE9)
 
         // Add a display link so the view updates along with scren refresh rate
         let displayLink = CADisplayLink(target: self, selector: #selector(update))

@@ -27,14 +27,10 @@ class Game {
     }
 
     func startGame() {
-        // Let user see the button for a while, then start motion and hide the button
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            if let motionController = self.motionController {
-                motionController.startMotion()
-            }
-            self.shells.forEach { $0.hideButton = true }
+        if let motionController = self.motionController {
+            motionController.startMotion()
         }
+        self.shells.forEach { $0.hideButton = true }
     }
 
 }

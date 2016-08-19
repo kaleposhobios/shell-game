@@ -10,6 +10,7 @@ import UIKit
 
 class ShellView : UIView {
     let shell: Shell
+    let shellImage = UIImage(named: "shellfish")
 
     init(shell: Shell) {
         self.shell = shell
@@ -33,14 +34,12 @@ class ShellView : UIView {
 
     override func drawRect(rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
-        UIColor.blueColor().set()
-        CGContextFillRect(context, rect)
+        shellImage?.drawInRect(rect)
 
         // If the shell is selected, draw a green cicle inside of it
         if shell.hasButton && !shell.hideButton {
-            UIColor.greenColor().set()
+            UIColor(hex: 0xCDDC39).set()
             CGContextFillEllipseInRect(context, CGRectInset(rect, rect.size.width / 4, rect.size.height / 4))
         }
-
     }
 }

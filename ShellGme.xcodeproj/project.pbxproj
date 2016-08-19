@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B362FFC1D5E520E00516DE2 /* ShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B362FFB1D5E520E00516DE2 /* ShellView.swift */; };
+		5B461A251D6788C30055608D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B461A241D6788C30055608D /* Extensions.swift */; };
 		5B90EFC61D5D0A750095C63E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B90EFC51D5D0A750095C63E /* AppDelegate.swift */; };
 		5B90EFCB1D5D0A750095C63E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B90EFC91D5D0A750095C63E /* Main.storyboard */; };
 		5B90EFCD1D5D0A750095C63E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B90EFCC1D5D0A750095C63E /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		5B362FFB1D5E520E00516DE2 /* ShellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShellView.swift; path = Views/ShellView.swift; sourceTree = "<group>"; };
+		5B461A241D6788C30055608D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Extensions/Extensions.swift; sourceTree = "<group>"; };
 		5B90EFC21D5D0A750095C63E /* ShellGme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShellGme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B90EFC51D5D0A750095C63E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B90EFCA1D5D0A750095C63E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B461A231D6788A80055608D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5B461A241D6788C30055608D /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		5B90EFB91D5D0A750095C63E = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 		5B90EFC41D5D0A750095C63E /* ShellGme */ = {
 			isa = PBXGroup;
 			children = (
+				5B461A231D6788A80055608D /* Extensions */,
 				5B90EFE31D5D2CE90095C63E /* Logic */,
 				5B90EFE61D5D2CFD0095C63E /* Model */,
 				5B90EFD71D5D13FF0095C63E /* Views */,
@@ -217,6 +228,7 @@
 				5B90EFEF1D5D406F0095C63E /* UIDynamicsMotionController.swift in Sources */,
 				5B90EFED1D5D38950095C63E /* Point.swift in Sources */,
 				5B90EFC61D5D0A750095C63E /* AppDelegate.swift in Sources */,
+				5B461A251D6788C30055608D /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
