@@ -98,7 +98,7 @@ class GameplayViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             self.navigationController?.popViewController(animated: true)
         }))
-        show(alert, sender: self)
+        self.showDetailViewController(alert, sender: self)
     }
 
     func userFailedButton() {
@@ -106,7 +106,7 @@ class GameplayViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             self.navigationController?.popViewController(animated: true)
         }))
-        show(alert, sender: self)
+        self.showDetailViewController(alert, sender: self)
     }
 
 }
