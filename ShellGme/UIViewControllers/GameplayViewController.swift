@@ -96,7 +96,7 @@ class GameplayViewController: UIViewController {
     func userFoundButton() {
         let alert = UIAlertController(title: "YOU FOUND ME", message: nil, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }))
         self.showDetailViewController(alert, sender: self)
     }
@@ -104,7 +104,7 @@ class GameplayViewController: UIViewController {
     func userFailedButton() {
         let alert = UIAlertController(title: "FAIL WHALE", message: nil, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }))
         self.showDetailViewController(alert, sender: self)
     }

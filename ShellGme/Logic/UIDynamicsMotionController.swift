@@ -45,7 +45,7 @@ class UIDynamicsMotionController : MotionController {
         NotificationCenter.default.addObserver(self, selector: #selector(userTappedButton), name: NSNotification.Name(rawValue: Constants.ShellWithButtonTappedKey), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(userTappedButton), name: NSNotification.Name(rawValue: Constants.ShellWithoutButtonTappedKey), object: nil)
 
-        // Setop after
+        // Stop after
     }
 
     @objc func userTappedButton() {
