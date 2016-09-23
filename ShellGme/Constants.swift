@@ -9,7 +9,7 @@
 import UIKit
 
 struct Constants {
-    static let heartbeatInterval: NSTimeInterval = 2
+    static let heartbeatInterval: TimeInterval = 2
     static let numShells = 3
     static let shellWidth: Double = 100
     static let shellHeight: Double = 100

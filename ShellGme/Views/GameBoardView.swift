@@ -30,7 +30,7 @@ class GameBoardView: UIView {
 
         // Add a display link so the view updates along with scren refresh rate
         let displayLink = CADisplayLink(target: self, selector: #selector(update))
-        displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+        displayLink.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
     }
 
     override init(frame: CGRect) {
@@ -45,7 +45,7 @@ class GameBoardView: UIView {
         for index in 0...game.shells.count - 1 {
             // Update the location of the shell view to match the shell's known location
             let shell = game.shells[index]
-            let shellFrame = CGRectMake((shell.center.x - shell.bounds.width / 2), (shell.center.y - shell.bounds.height / 2), shell.bounds.width, shell.bounds.height)
+            let shellFrame = CGRect(x: (shell.center.x - shell.bounds.width / 2), y: (shell.center.y - shell.bounds.height / 2), width: shell.bounds.width, height: shell.bounds.height)
             let view = shellViews[index]
             view.frame = shellFrame
             // And ask it to re-render

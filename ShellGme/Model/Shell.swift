@@ -25,14 +25,14 @@ import UIKit
         hasButton = button
         bounds = CGRect.zero
         center = CGPoint.zero
-        transform = CGAffineTransformIdentity
+        transform = CGAffineTransform.identity
         super.init()
     }
 
     func setStartPosition(position startPosition: Point) {
         // Set center and bounds based on given start position and constants for shell width and height
-        center = CGPointMake(CGFloat(startPosition.x()), CGFloat(startPosition.y()))
-        bounds = CGRectMake(CGFloat(startPosition.x()), CGFloat(startPosition.y()), CGFloat(Constants.shellWidth), CGFloat(Constants.shellHeight))
+        center = CGPoint(x: CGFloat(startPosition.x()), y: CGFloat(startPosition.y()))
+        bounds = CGRect(x: CGFloat(startPosition.x()), y: CGFloat(startPosition.y()), width: CGFloat(Constants.shellWidth), height: CGFloat(Constants.shellHeight))
     }
 
     func touched() {
@@ -43,7 +43,7 @@ import UIKit
             } else {
                 key = Constants.ShellWithoutButtonTappedKey
             }
-            NSNotificationCenter.defaultCenter().postNotificationName(key!, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: key!), object: nil)
         }
     }
 

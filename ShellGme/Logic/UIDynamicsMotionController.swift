@@ -42,8 +42,8 @@ class UIDynamicsMotionController : MotionController {
         behavior.elasticity = 1
         behavior.density = 0.5
         animator.addBehavior(behavior)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userTappedButton), name: Constants.ShellWithButtonTappedKey, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userTappedButton), name: Constants.ShellWithoutButtonTappedKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userTappedButton), name: NSNotification.Name(rawValue: Constants.ShellWithButtonTappedKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userTappedButton), name: NSNotification.Name(rawValue: Constants.ShellWithoutButtonTappedKey), object: nil)
 
         // Setop after
     }
@@ -61,7 +61,7 @@ class UIDynamicsMotionController : MotionController {
             let angle = CGFloat(arc4random_uniform(UInt32(range.1 - range.0) + 1) + UInt32(range.0))
             range = (0, 100)
             let magnitude = CGFloat(arc4random_uniform(UInt32(range.1 - range.0) + 1) + UInt32(range.0))
-            let push = UIPushBehavior(items: [shell], mode: .Instantaneous)
+            let push = UIPushBehavior(items: [shell], mode: .instantaneous)
             push.setAngle(angle, magnitude: magnitude / 10)
             animator.addBehavior(push)
         }

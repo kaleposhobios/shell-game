@@ -12,7 +12,7 @@ class MenuViewController: UIViewController, MenuDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .white
 
         navigationController?.setNavigationBarHidden(true, animated: false)
 

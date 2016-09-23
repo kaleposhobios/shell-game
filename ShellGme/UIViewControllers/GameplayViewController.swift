@@ -9,20 +9,20 @@
 import UIKit
 
 enum PregameStates : Int {
-    case PregameCountdown3 = 0
-    case PregameCountdown2 = 1
-    case PregameCountdown1 = 2
-    case PregameCountdown0 = 3
+    case pregameCountdown3 = 0
+    case pregameCountdown2 = 1
+    case pregameCountdown1 = 2
+    case pregameCountdown0 = 3
 }
-class GameplayViewController: UIViewController, UIAlertViewDelegate {
+class GameplayViewController: UIViewController {
 
     var gameBoard: GameBoardView?
     let game: Game
-    var pregameState = PregameStates.PregameCountdown3
+    var pregameState = PregameStates.pregameCountdown3
     let countdownLabel = UILabel(frame: CGRect.zero)
-    var timer: NSTimer?
+    var timer: Timer?
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         fatalError("Plesae use init(game:)")
     }
 
@@ -38,7 +38,7 @@ class GameplayViewController: UIViewController, UIAlertViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .white
 
         // Make a game board view and add it to self.view
         gameBoard = GameBoardView(frame: view.bounds, game: game)
@@ -47,17 +47,17 @@ class GameplayViewController: UIViewController, UIAlertViewDelegate {
         // Give a motion controller to control the shells movement
         game.motionController = UIDynamicsMotionController(referenceView: gameBoard!, shells: game.shells)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userFoundButton), name: Constants.ShellWithButtonTappedKey, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userFailedButton), name: Constants.ShellWithoutButtonTappedKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userFoundButton), name: NSNotification.Name(rawValue: Constants.ShellWithButtonTappedKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userFailedButton), name: NSNotification.Name(rawValue: Constants.ShellWithoutButtonTappedKey), object: nil)
         countdownLabel.shadowColor = UIColor(hex: 0xCDDC39)
-        countdownLabel.textColor = .whiteColor()
+        countdownLabel.textColor = .white
         countdownLabel.shadowOffset = CGSize(width: 3, height: 3)
-        countdownLabel.font = UIFont.boldSystemFontOfSize(100)
+        countdownLabel.font = UIFont.boldSystemFont(ofSize: 100)
         view.addSubview(countdownLabel)
         setupForPregameState()
 
         // Use timer to show countdown
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(advancePregameState), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(advancePregameState), userInfo: nil, repeats: true)
     }
 
     func advancePregameState() {
@@ -67,14 +67,14 @@ class GameplayViewController: UIViewController, UIAlertViewDelegate {
     }
 
     func setupForPregameState() {
-        countdownLabel.transform = CGAffineTransformIdentity
-        countdownLabel.hidden = false
+        countdownLabel.transform = CGAffineTransform.identity
+        countdownLabel.isHidden = false
         switch pregameState {
-        case .PregameCountdown3:
+        case .pregameCountdown3:
             countdownLabel.text = "3"
-        case .PregameCountdown2:
+        case .pregameCountdown2:
             countdownLabel.text = "2"
-        case .PregameCountdown1:
+        case .pregameCountdown1:
             countdownLabel.text = "1"
         default:
             // Start game
@@ -85,23 +85,28 @@ class GameplayViewController: UIViewController, UIAlertViewDelegate {
 
         countdownLabel.sizeToFit()
         countdownLabel.center = view.center
-        UIView.animateWithDuration(0.8, animations: {
-            self.countdownLabel.transform = CGAffineTransformMakeScale(0.01, 0.01)
-            })
-        { (completed) in
-            self.countdownLabel.hidden = true
-        }
+        UIView.animate(withDuration: 0.8, animations: {
+            self.countdownLabel.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            }, completion: { (completed) in
+            self.countdownLabel.isHidden = true
+        })
+        
     }
 
     func userFoundButton() {
-        UIAlertView(title: "YOU FOUND ME", message: nil, delegate: self, cancelButtonTitle: "OK").show()
+        let alert = UIAlertController(title: "YOU FOUND ME", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        show(alert, sender: self)
     }
 
     func userFailedButton() {
-        UIAlertView(title: "FAIL WHALE", message: nil, delegate: self, cancelButtonTitle: "OK").show()
+        let alert = UIAlertController(title: "FAIL WHALE", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        show(alert, sender: self)
     }
 
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        navigationController?.popViewControllerAnimated(true)
-    }
 }

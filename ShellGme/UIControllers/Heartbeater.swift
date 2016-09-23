@@ -12,12 +12,12 @@ import UIKit
  * Takes a view and scales it to larger every few seconds
  */
 class Heartbeater {
-    private let view: UIView
-    private var timer: NSTimer?
+    fileprivate let view: UIView
+    fileprivate var timer: Timer?
 
     init(view: UIView) {
         self.view = view
-        timer = NSTimer.scheduledTimerWithTimeInterval(Constants.heartbeatInterval,
+        timer = Timer.scheduledTimer(timeInterval: Constants.heartbeatInterval,
                                                        target: self,
                                                        selector: #selector(heartbeat),
                                                        userInfo: nil,
@@ -25,13 +25,13 @@ class Heartbeater {
     }
 
     @objc func heartbeat() {
-        UIView.animateWithDuration(0.25,
+        UIView.animate(withDuration: 0.25,
             animations: {() in
-                self.view.transform = CGAffineTransformMakeScale(1.5, 1.5)
+                self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             }, completion: {(completed) in
-                UIView.animateWithDuration(0.25) {
-                    self.view.transform = CGAffineTransformMakeScale(1.0, 1.0)
-                }
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                }) 
             })
     }
 }

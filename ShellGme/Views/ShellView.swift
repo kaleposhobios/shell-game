@@ -21,25 +21,25 @@ class ShellView : UIView {
             height: shell.bounds.height
         )
         super.init(frame: frame)
-        opaque = false
+        isOpaque = false
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         shell.touched()
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
-        shellImage?.drawInRect(rect)
+        shellImage?.draw(in: rect)
 
         // If the shell is selected, draw a green cicle inside of it
         if shell.hasButton && !shell.hideButton {
             UIColor(hex: 0xCDDC39).set()
-            CGContextFillEllipseInRect(context, CGRectInset(rect, rect.size.width / 4, rect.size.height / 4))
+            context?.fillEllipse(in: rect.insetBy(dx: rect.size.width / 4, dy: rect.size.height / 4))
         }
     }
 }
