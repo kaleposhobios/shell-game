@@ -2,6 +2,7 @@ name: Run
 on:
   pull_request:
     types: [opened, synchronize]
+  workflow_call:
 
 jobs:
   stylehawk-update-status:
