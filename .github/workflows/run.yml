@@ -8,17 +8,19 @@ jobs:
     name: Stylehawk Update Status
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v4.2.2
       # - name: setup-git-credentials
       #   uses: de-vri-es/setup-git-credentials@v2.1.2
       
     
       - name: Checkout Style Hawk
-        uses: actions/checkout@v4.2.2
-        repository: 'TriumphPayNonSDLC/style-hawk/'
+        uses: actions/checkout@v4
+        with:
+          repository: TriumphPayNonSDLC/style-hawk
     
       - name: Setup Node
         uses: actions/setup-node@v4
-        
+
       - name: Setup environment variables from .env
         shell: bash
         run: |
