@@ -1,0 +1,34 @@
+name: Run
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  stylehawk-update-status:
+    name: Stylehawk Update Status
+    runs-on: ubuntu-20.04
+    steps:
+      # - name: setup-git-credentials
+      #   uses: de-vri-es/setup-git-credentials@v2.1.2
+      
+    
+      - name: Checkout Style Hawk
+        uses: actions/checkout@v4.2.2
+        repository: 'TriumphPayNonSDLC/style-hawk/'
+    
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        
+      - name: Setup environment variables from .env
+        shell: bash
+        run: |
+          while read line; do
+            if [ "${line:0:1}" != "#" ]; then
+              echo "$line" >> $GITHUB_ENV
+            fi
+          done < .env
+
+      - name: Run Stylehawk script
+        shell: bash
+        run: |
+          node style_hawk.js
