@@ -1,8 +1,9 @@
 name: Run
 on:
+  workflow_dispatch:
   pull_request:
     types: [opened, synchronize]
-  workflow_dispatch:
+
 
 jobs:
   stylehawk-update-status:
